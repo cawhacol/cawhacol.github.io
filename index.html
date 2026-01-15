@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Barra Lateral -->
+        <div class="sidebar">
+            <!-- Cabeçalho da Sidebar -->
+            <div class="sidebar-header">
+                <div class="user-avatar">
+                    <img src="https://via.placeholder.com/40" alt="Usuário">
+                </div>
+                <div class="sidebar-actions">
+                    <button class="icon-btn"><i class="fas fa-users"></i></button>
+                    <button class="icon-btn"><i class="fas fa-circle-notch"></i></button>
+                    <button class="icon-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+
+            <!-- Campo de Busca -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Pesquisar ou começar uma nova conversa">
+                </div>
+            </div>
+
+            <!-- Lista de Conversas -->
+            <div class="conversations-list">
+                <!-- Conversa 1 -->
+                <div class="conversation-item active">
+                    <div class="conversation-avatar">
+                        <img src="https://via.placeholder.com/50" alt="Contato">
+                    </div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <h4>Grupo da Família</h4>
+                            <span class="time">10:30</span>
+                        </div>
+                        <div class="conversation-preview">
+                            <p>Maria: Boa noite a todos!</p>
+                            <span class="unread-count">5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversa 2 -->
+                <div class="conversation-item">
+                    <div class="conversation-avatar">
+                        <img src="https://via.placeholder.com/50" alt="Contato">
+                    </div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <h4>João Silva</h4>
+                            <span class="time">Ontem</span>
+                        </div>
+                        <div class="conversation-preview">
+                            <p>Vamos nos encontrar amanhã?</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Adicione mais conversas aqui -->
+            </div>
+        </div>
+
+        <!-- Área Principal de Chat -->
+        <div class="chat-area">
+            <!-- Cabeçalho do Chat -->
+            <div class="chat-header">
+                <div class="chat-contact">
+                    <div class="contact-avatar">
+                        <img src="https://via.placeholder.com/45" alt="Contato">
+                    </div>
+                    <div class="contact-info">
+                        <h3>Grupo da Família</h3>
+                        <p>online</p>
+                    </div>
+                </div>
+                <div class="chat-actions">
+                    <button class="icon-btn"><i class="fas fa-search"></i></button>
+                    <button class="icon-btn"><i class="fas fa-paperclip"></i></button>
+                    <button class="icon-btn"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+            </div>
+
+            <!-- Mensagens -->
+            <div class="messages-container" id="messagesContainer">
+                <!-- Mensagem recebida -->
+                <div class="message received">
+                    <div class="message-content">
+                        <p>Olá pessoal! Como vocês estão?</p>
+                        <span class="message-time">10:30</span>
+                    </div>
+                </div>
+
+                <!-- Mensagem enviada -->
+                <div class="message sent">
+                    <div class="message-content">
+                        <p>Tudo bem por aqui! E aí?</p>
+                        <span class="message-time">10:32</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input de Mensagem -->
+            <div class="message-input-container">
+                <div class="input-actions">
+                    <button class="icon-btn"><i class="far fa-grin"></i></button>
+                    <button class="icon-btn"><i class="fas fa-paperclip"></i></button>
+                </div>
+                <div class="message-input">
+                    <input type="text" placeholder="Digite uma mensagem" id="messageInput">
+                </div>
+                <div class="send-button">
+                    <button class="icon-btn" id="sendButton">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
