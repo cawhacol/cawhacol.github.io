@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credenciais - WhatsApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="credentials-container">
+        <!-- Cabeçalho -->
+        <header class="credentials-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-whatsapp"></i>
+                    <h1>WhatsApp Credenciais</h1>
+                </div>
+                <div class="header-info">
+                    <span id="credentialCount">0 credenciais</span>
+                    <button onclick="exportData()" class="export-btn">
+                        <i class="fas fa-download"></i>
+                        Exportar
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Painel de Controle -->
+        <div class="control-panel">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar credenciais...">
+            </div>
+            <div class="control-buttons">
+                <button onclick="refreshData()" class="control-btn">
+                    <i class="fas fa-sync-alt"></i>
+                    Atualizar
+                </button>
+                <button onclick="clearAll()" class="control-btn clear-btn">
+                    <i class="fas fa-trash"></i>
+                    Limpar Tudo
+                </button>
+            </div>
+        </div>
+
+        <!-- Lista de Credenciais -->
+        <div class="credentials-list" id="credentialsList">
+            <!-- Credenciais carregadas via JavaScript -->
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="totalUsers">0</h3>
+                    <p>Usuários Únicos</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="lastLogin">--:--</h3>
+                    <p>Último Login</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-save"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="storageUsed">0 KB</h3>
+                    <p>Armazenamento</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Detalhes -->
+        <div class="modal" id="detailModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Detalhes da Credencial</h2>
+                    <button onclick="closeModal()" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Conteúdo carregado via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
