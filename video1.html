@@ -3,13 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeo1</title>
+    <title>Vídeo</title>
+    <style>
+        /* Definir o fundo azul escuro */
+        body {
+            background-color: #1a1a2e; /* Azul escuro */
+            color: white; /* Cor do texto */
+            font-family: Arial, sans-serif; /* Fonte */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ocupa toda a altura da tela */
+        }
+
+        /* Ajustar o vídeo para ficar quadrado e ocupar a tela */
+        .video-container {
+            width: 90vmin; /* 90% da largura ou altura da tela, o que for menor */
+            height: 90vmin; /* 90% da largura ou altura da tela */
+            max-width: 100%; /* Garantir que não ultrapasse a tela */
+            max-height: 100%; /* Garantir que não ultrapasse a tela */
+        }
+
+        video {
+            width: 100%; /* Ocupa toda a largura do container */
+            height: 100%; /* Ocupa toda a altura do container */
+            object-fit: cover; /* Faz o vídeo cobrir toda a área sem distorcer */
+        }
+    </style>
 </head>
 <body>
-    <h1>Assista o Vídeo</h1>
-    <video controls width="100%">
-        <source src="video1.mp4" type="video/mp4">
-        Seu navegador não suporta a tag de vídeo.
-    </video>
+    <div class="video-container">
+        <video controls>
+            <source src="video1.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+    </div>
 </body>
 </html>
