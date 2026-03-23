@@ -6,33 +6,31 @@
     <title>Vídeo</title>
     <style>
         body {
-            background-color: #1a1a2e; /* Azul escuro */
+            background-color: #1a1a2e;
             color: white;
             font-family: Arial, sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Ocupa toda a altura da tela */
-            overflow: hidden; /* Impede barra de rolagem */
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* Contêiner do vídeo que vai ajustar o tamanho com base no tamanho da tela */
+    
         .video-container {
-            width: 100vw; /* 100% da largura da tela */
-            height: 100vh; /* 100% da altura da tela */
-            max-width: 100%; /* Garantir que o contêiner não ultrapasse a tela */
-            max-height: 100%; /* Garantir que o contêiner não ultrapasse a tela */
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
-        /* Vídeo responsivo, quadrado, e escalando com a tela */
         video {
-            width: 100vmin; /* 100% da menor dimensão entre a largura e altura da tela */
-            height: 100vmin; /* 100% da menor dimensão entre a largura e altura da tela */
-            object-fit: cover; /* Faz o vídeo cobrir toda a área sem distorcer */
+            width: 100vmin; 
+            height: 100vmin; 
+            object-fit: cover;
         }
     </style>
 </head>
