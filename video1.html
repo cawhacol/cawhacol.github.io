@@ -6,40 +6,40 @@
     <title>Vídeo</title>
     <style>
         body {
-            background-color: #1a1a2e; /* Azul escuro */
+            background-color: #1a1a2e;
             color: white;
             font-family: Arial, sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Ocupa toda a altura da tela */
-            overflow: hidden; /* Impede barra de rolagem */
+            height: 100vh; 
+            overflow: hidden;
         }
 
-        /* Contêiner do vídeo que vai ajustar o tamanho com base no tamanho da tela */
+   
         .video-container {
-            width: 100%; /* Ocupa toda a largura da tela */
-            height: 100%; /* Ocupa toda a altura da tela */
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
         }
 
-        /* Vídeo responsivo, quadrado, e escalando com a tela */
+
         video {
-            width: 100vmin; /* 100% da menor dimensão entre a largura e altura da tela */
-            height: 100vmin; /* 100% da menor dimensão entre a largura e altura da tela */
-            object-fit: cover; /* Faz o vídeo cobrir toda a área sem distorcer */
-            max-width: 100%; /* Garante que não ultrapasse a largura da tela */
-            max-height: 100%; /* Garante que não ultrapasse a altura da tela */
+            width: 100vmin; 
+            height: 100vmin;
+            object-fit: cover;
+            max-width: 100%; 
+            max-height: 100%;
         }
 
-        /* Ajustes para dispositivos móveis e telas menores */
+
         @media (max-width: 768px) {
             body {
-                height: 100vh; /* Ajusta para telas menores */
+                height: 100vh;
             }
 
             .video-container {
@@ -51,12 +51,12 @@
             }
 
             video {
-                width: 90vmin; /* Tamanho ajustado para telas menores */
+                width: 90vmin; 
                 height: 90vmin;
             }
         }
 
-        /* Ajustes para quando o dispositivo estiver em orientação horizontal (paisagem) */
+
         @media (orientation: landscape) {
             .video-container {
                 justify-content: center;
@@ -64,7 +64,7 @@
             }
 
             video {
-                width: 90vmin; /* Ajuste para que o vídeo continue quadrado */
+                width: 90vmin;
                 height: 90vmin;
             }
         }
