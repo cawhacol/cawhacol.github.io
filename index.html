@@ -1,140 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Web</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="https://web.whatsapp.com/favicon.ico">
+    <title>Vídeo 1</title>
 </head>
 <body>
-    <div class="login-container">
-        <!-- Cabeçalho -->
-        <header class="login-header">
-            <div class="whatsapp-logo">
-                <i class="fab fa-whatsapp"></i>
-                <span>WhatsApp</span>
-            </div>
-            <div class="language-selector">
-                <select>
-                    <option value="pt">Português (BR)</option>
-                    <option value="en">English</option>
-                </select>
-            </div>
-        </header>
-
-        <div class="login-wrapper">
-            <!-- Painel QR Code -->
-            <div class="qr-panel">
-                <div class="qr-container">
-                    <h2>Use o WhatsApp no seu computador</h2>
-                    
-                    <div class="qr-instructions">
-                        <ol>
-                            <li>Abra o WhatsApp no seu telefone</li>
-                            <li>Toque em <strong>Menu</strong> ou <strong>Configurações</strong></li>
-                            <li>Selecione <strong>Dispositivos conectados</strong></li>
-                            <li>Toque em <strong>Conectar um dispositivo</strong></li>
-                            <li>Aponte seu telefone para esta tela</li>
-                        </ol>
-                    </div>
-
-                    <div class="qr-code">
-                        <div class="qr-placeholder">
-                            <div class="qr-grid"></div>
-                            <div class="whatsapp-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                        </div>
-                        <button class="refresh-btn" id="refreshQR">
-                            <i class="fas fa-sync-alt"></i>
-                            Atualizar código QR
-                        </button>
-                    </div>
-
-                    <div class="qr-help">
-                        <a href="#">
-                            <i class="fas fa-link"></i>
-                            Conectar com número de telefone
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Painel Login -->
-            <div class="login-panel">
-                <div class="login-form-container">
-                    <h1>Entrar com Email</h1>
-                    <p class="subtitle">Use seu email e senha do WhatsApp</p>
-
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label>Email ou número de telefone</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="email" placeholder="email@exemplo.com" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Senha</label>
-                            <div class="input-with-icon">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="password" placeholder="Digite sua senha" required>
-                                <button type="button" class="show-password" id="showPassword">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                            <div class="password-options">
-                                <a href="#" class="forgot-password">Esqueceu a senha?</a>
-                            </div>
-                        </div>
-
-                        <div class="form-group remember-me">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">Manter-me conectado</label>
-                        </div>
-
-                        <button type="submit" class="btn-login">
-                            <i class="fab fa-whatsapp"></i>
-                            Entrar no WhatsApp
-                        </button>
-
-                        <div class="divider">
-                            <span>ou</span>
-                        </div>
-
-                        <button type="button" class="btn-alternative" id="useQR">
-                            <i class="fas fa-qrcode"></i>
-                            Usar código QR
-                        </button>
-                    </form>
-
-                    <div class="login-footer">
-                        <p class="terms">
-                            Ao entrar, você concorda com nossos 
-                            <a href="#">Termos</a> e <a href="#">Política de Privacidade</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Loading -->
-    <div class="loading-overlay" id="loading">
-        <div class="loading-content">
-            <div class="spinner">
-                <i class="fab fa-whatsapp"></i>
-            </div>
-            <p>Conectando ao WhatsApp...</p>
-        </div>
-    </div>
-
-    <!-- Notificação -->
-    <div class="notification" id="notification"></div>
-
-    <script src="script.js"></script>
+    <h1>Assista o Vídeo</h1>
+    <video controls width="100%">
+        <source src="video1.mp4" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+    </video>
 </body>
 </html>
