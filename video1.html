@@ -5,30 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vídeo</title>
     <style>
-
         body {
-            background-color: #1a1a2e;
-            color: white; 
+            background-color: #1a1a2e; /* Azul escuro */
+            color: white;
             font-family: Arial, sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 90vh; 
+            height: 100vh; /* Ocupa toda a altura da tela */
+            overflow: hidden; /* Impede barra de rolagem */
         }
 
-        
+        /* Contêiner do vídeo que vai ajustar o tamanho com base no tamanho da tela */
         .video-container {
-            width: 90vmin; 
-            height: 90vmin; 
-            max-width: 110%; 
-            max-height: 90%; 
+            width: 100vw; /* 100% da largura da tela */
+            height: 100vh; /* 100% da altura da tela */
+            max-width: 100%; /* Garantir que o contêiner não ultrapasse a tela */
+            max-height: 100%; /* Garantir que o contêiner não ultrapasse a tela */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
+        /* Vídeo responsivo, quadrado, e escalando com a tela */
         video {
-            width: 110%; 
-            height: 90%; 
-            object-fit: cover; 
+            width: 100vmin; /* 100% da menor dimensão entre a largura e altura da tela */
+            height: 100vmin; /* 100% da menor dimensão entre a largura e altura da tela */
+            object-fit: cover; /* Faz o vídeo cobrir toda a área sem distorcer */
         }
     </style>
 </head>
