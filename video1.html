@@ -23,6 +23,25 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+        }
+
+        /* Logotipo no canto superior direito */
+        .logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            max-width: 150px;
+            max-height: 80px;
+            width: auto;
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 1;
         }
 
         .video-container {
@@ -43,7 +62,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-
         @media (max-width: 480px) {
             video {
                 max-height: 80vh;
@@ -52,17 +70,33 @@
             body {
                 padding: 10px;
             }
-        }
 
+            .logo {
+                top: 10px;
+                right: 10px;
+                max-width: 100px;
+                max-height: 60px;
+            }
+        }
 
         @media (orientation: landscape) and (max-height: 600px) {
             video {
                 max-height: 85vh;
             }
+
+            .logo {
+                top: 10px;
+                right: 10px;
+                max-width: 80px;
+                max-height: 50px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Logotipo no canto superior direito -->
+    <img src="imagens/ETIC_Algarve-Logo.png" alt="Logotipo" class="logo">
+
     <div class="video-container">
         <video controls>
             <source src="videos/video1.mp4" type="video/mp4">
