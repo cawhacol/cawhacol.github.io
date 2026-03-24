@@ -23,6 +23,25 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+        }
+
+    
+        .logo {
+            position: fixed;
+            bottom: -30px;
+            right: 30px;
+            z-index: 100;
+            max-width: 200px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 1;
         }
 
         .video-container {
@@ -43,7 +62,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
-
         @media (max-width: 480px) {
             video {
                 max-height: 80vh;
@@ -52,17 +70,33 @@
             body {
                 padding: 10px;
             }
-        }
 
+            .logo {
+                bottom: -10px;
+                right: 13px;
+                max-width: 100px;
+                max-height: 100px;
+            }
+        }
 
         @media (orientation: landscape) and (max-height: 600px) {
             video {
                 max-height: 85vh;
             }
+
+            .logo {
+                bottom: -10px;
+                right: 13px;
+                max-width: 100px;
+                max-height: 100px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <img src="imagens/ETIC_Algarve-Logo.png" alt="Logotipo" class="logo">
+
     <div class="video-container">
         <video controls>
             <source src="videos/video1.mp4" type="video/mp4">
