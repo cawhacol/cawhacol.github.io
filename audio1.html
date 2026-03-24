@@ -19,7 +19,7 @@
             align-items: center;
             padding: 20px;
             position: relative;
-            /* Imagem de fundo com fallback */
+        
             background-image: url('imagens/background.jpg');
             background-size: cover;
             background-position: center;
@@ -27,12 +27,11 @@
             background-attachment: fixed;
         }
 
-        /* Fallback se a imagem não carregar */
+       
         body {
             background-color: #1a1a2e;
         }
 
-        /* Overlay escuro para melhor contraste do player */
         body::before {
             content: '';
             position: absolute;
@@ -76,7 +75,7 @@
             border-radius: 20px;
         }
 
-        /* Ajuste para telas muito pequenas */
+
         @media (max-width: 480px) {
             audio {
                 max-width: 90%;
@@ -92,7 +91,7 @@
             }
         }
 
-        /* Para garantir que em landscape o áudio não fique muito grande */
+      
         @media (orientation: landscape) and (max-height: 600px) {
             audio {
                 max-width: 70%;
@@ -108,9 +107,6 @@
             <source src="audio/audio1.wav" type="audio/wav">
             Seu navegador não suporta a tag de áudio.
         </audio>
-        <div class="audio-info">
-            🎵 Player de áudio
-        </div>
     </div>
 </body>
 </html>
