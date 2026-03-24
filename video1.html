@@ -5,67 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vídeo</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #1a1a2e;
-            color: white;
             font-family: Arial, sans-serif;
-            margin: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; 
-            overflow: hidden;
+            padding: 20px;
         }
 
-   
         .video-container {
-            width: 100%;
-            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
 
         video {
-            width: 100vmin; 
-            height: 100vmin;
-            object-fit: cover;
-            max-width: 100%; 
-            max-height: 100%;
+            max-width: 100%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-
-        @media (max-width: 768px) {
+        /* Ajuste para telas muito pequenas */
+        @media (max-width: 480px) {
+            video {
+                max-height: 80vh;
+            }
+            
             body {
-                height: 100vh;
-            }
-
-            .video-container {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            video {
-                width: 90vmin; 
-                height: 90vmin;
+                padding: 10px;
             }
         }
 
-
-        @media (orientation: landscape) {
-            .video-container {
-                justify-content: center;
-                align-items: center;
-            }
-
+        /* Para garantir que em landscape o vídeo não fique muito grande */
+        @media (orientation: landscape) and (max-height: 600px) {
             video {
-                width: 90vmin;
-                height: 90vmin;
+                max-height: 85vh;
             }
         }
     </style>
@@ -73,7 +61,7 @@
 <body>
     <div class="video-container">
         <video controls>
-            <source src="/videos/video1.mp4" type="video/mp4">
+            <source src="videos/video1.mp4" type="video/mp4">
             Seu navegador não suporta a tag de vídeo.
         </video>
     </div>
